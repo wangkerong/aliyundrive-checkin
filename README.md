@@ -1,8 +1,5 @@
 # aliyundrive-checkin
 
-## 说明
-- 北京时间每日 12:00 签到
-
 ## secrets 配置
 - `REFRESH_TOKENS`: 登录[阿里云盘](https://www.aliyundrive.com/drive)，在 `cookie` 中查找 `refresh_token` 字段
 - `GP_TOKEN`: [前往设置](https://github.com/settings/tokens)
