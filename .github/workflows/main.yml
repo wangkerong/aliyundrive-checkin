@@ -2,8 +2,8 @@ name: checkin
 
 on:
   schedule:
-    # 每天中午 12:00(UTC+8) 执行
-    - cron: '00 04 * * *'
+    # 每天执行2次
+    - cron: '30 */12 * * *'
   workflow_dispatch:
 jobs:
   signin:
