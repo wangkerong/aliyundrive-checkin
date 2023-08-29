@@ -1,0 +1,16 @@
+{
+  "name": "aliyundrive-checkin",
+  "version": "0.1.0",
+  "description": "阿里云盘每日签到",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "GY <dev.youngkwok718@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}

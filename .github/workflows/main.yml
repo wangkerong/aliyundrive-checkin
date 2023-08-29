@@ -2,34 +2,29 @@ name: checkin
 
 on:
   schedule:
-    # 每天执行2次
-    - cron: '30 */12 * * *'
+    # 每天执行3次
+    - cron: "00 */8 * * *"
   workflow_dispatch:
+
+env:
+  REFRESH_TOKENS: ${{secrets.REFRESH_TOKENS}}
+
 jobs:
   signin:
     name: checkin
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-      - uses: ImYrS/aliyun-auto-signin@main
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          REFRESH_TOKENS: ${{ secrets.REFRESH_TOKENS }}
-          GP_TOKEN: ${{ secrets.GP_TOKEN}}
-          PUSH_TYPES: ''
-          DO_NOT_REWARD: 'false'
-          SERVERCHAN_SEND_KEY: ${{ secrets.SERVERCHAN_SEND_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-          PUSHPLUS_TOPIC: ${{ secrets.PUSHPLUS_TOPIC }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_TLS: ${{ secrets.SMTP_TLS }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_SENDER: ${{ secrets.SMTP_SENDER }}
-          SMTP_RECEIVER: ${{ secrets.SMTP_RECEIVER }}
-          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          CQHTTP_ENDPOINT: ${{ secrets.CQHTTP_ENDPOINT }}
-          CQHTTP_USER_ID: ${{ secrets.CQHTTP_USER_ID }}
-          CQHTTP_ACCESS_TOKEN: ${{ secrets.CQHTTP_ACCESS_TOKEN }}
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm instaill
+      - run: npm run start
