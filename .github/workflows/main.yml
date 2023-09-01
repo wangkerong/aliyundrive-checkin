@@ -8,6 +8,7 @@ on:
 
 env:
   REFRESH_TOKENS: ${{secrets.REFRESH_TOKENS}}
+  PUSH_TOKEN: ${{secrets.PUSH_TOKEN}}
 
 jobs:
   signin:
