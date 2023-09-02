@@ -3,7 +3,7 @@ name: checkin
 on:
   schedule:
     # 每天14.30执行
-    - cron: "30 14 * * *"
+    - cron: "30 04 * * *"
   workflow_dispatch:
 
 env:
