@@ -49,6 +49,7 @@ async function sendPushNotification(signin_count, rewardInfo) {
         },
       });
       const signinData = await signinResponse.json();
+      console.log(signinData)
 
       const signin_count = signinData.result.signInCount;
       console.log("签到成功, 本月累计签到" + signin_count + "天" + "\n");
